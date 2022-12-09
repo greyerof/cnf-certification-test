@@ -13,7 +13,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-require k8s.io/client-go v0.25.4
+require k8s.io/client-go v0.25.5
 
 require (
 	github.com/kelseyhightower/envconfig v1.4.0
@@ -25,8 +25,8 @@ require (
 	github.com/operator-framework/operator-lifecycle-manager v0.20.0
 	github.com/pkg/errors v0.9.1 // indirect
 	helm.sh/helm/v3 v3.10.2
-	k8s.io/api v0.25.4
-	k8s.io/apimachinery v0.25.4
+	k8s.io/api v0.25.5
+	k8s.io/apimachinery v0.25.5
 	k8s.io/klog/v2 v2.80.1 // indirect
 )
 
@@ -123,12 +123,12 @@ require (
 	go.etcd.io/etcd/api/v3 v3.5.4 // indirect
 	go.starlark.net v0.0.0-20220928063852-5fccb4daaf6d // indirect
 	golang.org/x/crypto v0.1.0 // indirect
-	golang.org/x/net v0.1.0 // indirect
+	golang.org/x/net v0.3.1-0.20221206200815-1e63c2f08a10 // indirect
 	golang.org/x/oauth2 v0.1.0 // indirect
 	golang.org/x/sync v0.0.0-20220929204114-8fcdb60fdcc0 // indirect
-	golang.org/x/sys v0.2.0 // indirect
-	golang.org/x/term v0.1.0 // indirect
-	golang.org/x/text v0.4.0 // indirect
+	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/term v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220930163606-c98284e70a91 // indirect
@@ -136,8 +136,8 @@ require (
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	k8s.io/apiserver v0.25.2 // indirect
-	k8s.io/cli-runtime v0.25.4 // indirect
-	k8s.io/component-base v0.25.4 // indirect
+	k8s.io/cli-runtime v0.25.5 // indirect
+	k8s.io/component-base v0.25.5 // indirect
 	k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280 // indirect
 	k8s.io/utils v0.0.0-20221012122500-cfd413dd9e85 // indirect
 	oras.land/oras-go v1.2.0 // indirect
@@ -161,7 +161,7 @@ require (
 	github.com/test-network-function/cnfextensions v0.0.0-20220908220149-566dd6fe6b0e
 	github.com/test-network-function/privileged-daemonset v0.0.5
 	gopkg.in/yaml.v3 v3.0.1
-	k8s.io/kubectl v0.25.4
+	k8s.io/kubectl v0.25.5
 )
 
 replace github.com/openshift/machine-config-operator => github.com/openshift/machine-config-operator v0.0.1-0.20200913004441-7eba765c69c9
