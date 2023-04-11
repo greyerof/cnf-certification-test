@@ -20,7 +20,6 @@ require (
 	github.com/mittwald/go-helm-client v0.12.1
 	github.com/onsi/ginkgo/v2 v2.9.2
 	github.com/openshift/api v0.0.0-20230223193310-d964c7a58d75
-	github.com/openshift/client-go v0.0.0-20230120202327-72f107311084
 	github.com/operator-framework/api v0.17.4-0.20230223191600-0131a6301e42
 	github.com/operator-framework/operator-lifecycle-manager v0.20.0
 	github.com/pkg/errors v0.9.1 // indirect
