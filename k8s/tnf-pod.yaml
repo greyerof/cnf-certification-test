@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cnf-cert-suite
+  namespace: cnf-suite
+  labels:
+    app: cnf-cert-suite
+spec:
+  containers:
+  - name: cnf-cert-suite
+    imagePullPolicy: Always
+    image: quay.io/greyerof/tests:cnfsuiteopv1
+    command: ["./run-cnf-suites.sh"]
+    args: ["-l", "observability"]
+    env:
+      - name: TNF_LOG_LEVEL
+        value: trace
+
