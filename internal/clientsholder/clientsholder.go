@@ -17,6 +17,7 @@
 package clientsholder
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -171,34 +172,41 @@ func newClientsHolder(filenames ...string) (*ClientsHolder, error) { //nolint:fu
 	logrus.Infof("Creating k8s go-clients holder.")
 	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
 
-	precedence := []string{}
-	if len(filenames) > 0 {
-		precedence = append(precedence, filenames...)
-	}
-
-	loadingRules.Precedence = precedence
-	configOverrides := &clientcmd.ConfigOverrides{}
-	kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
-		loadingRules,
-		configOverrides,
-	)
-	// Get a rest.Config from the kubeconfig file.  This will be passed into all
-	// the client objects we create.
 	var err error
-	clientsHolder.RestConfig, err = kubeconfig.ClientConfig()
+	clientsHolder.RestConfig, err = rest.InClusterConfig()
 	if err != nil {
-		return nil, fmt.Errorf("cannot instantiate rest config: %s", err)
-	}
+		logrus.Infof("Running outside a cluster. Parsing kubeconfig file/s.")
 
-	// Save merged config to temporary kubeconfig file.
-	kubeRawConfig, err := kubeconfig.RawConfig()
-	if err != nil {
-		return nil, fmt.Errorf("failed to get kube raw config: %w", err)
-	}
+		if len(filenames) == 0 {
+			return nil, errors.New("no kubeconfig file found")
+		}
 
-	clientsHolder.KubeConfig, err = createByteArrayKubeConfig(&kubeRawConfig)
-	if err != nil {
-		return nil, fmt.Errorf("failed to byte array kube config reference: %w", err)
+		// Get a rest.Config from the kubeconfig file.  This will be passed into all
+		// the client objects we create.
+		precedence := []string{}
+		precedence = append(precedence, filenames...)
+
+		loadingRules.Precedence = precedence
+		configOverrides := &clientcmd.ConfigOverrides{}
+		kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
+			loadingRules,
+			configOverrides,
+		)
+		// Save merged config to temporary kubeconfig file.
+		kubeRawConfig, err := kubeconfig.RawConfig()
+		if err != nil {
+			return nil, fmt.Errorf("failed to get kube raw config: %w", err)
+		}
+
+		clientsHolder.KubeConfig, err = createByteArrayKubeConfig(&kubeRawConfig)
+		if err != nil {
+			return nil, fmt.Errorf("failed to byte array kube config reference: %w", err)
+		}
+
+		clientsHolder.RestConfig, err = kubeconfig.ClientConfig()
+		if err != nil {
+			return nil, fmt.Errorf("cannot instantiate rest config: %s", err)
+		}
 	}
 
 	DefaultTimeout := 10 * time.Second
