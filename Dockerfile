@@ -60,6 +60,7 @@ RUN make install-tools && make build-cnf-tests
 # hadolint ignore=SC2046
 RUN \
 	mkdir ${TNF_BIN_DIR} \
+	mkdir $(TNF_DIR)/config \
 	&& cp run-cnf-suites.sh ${TNF_DIR} \
 	&& mkdir ${TNF_DIR}/script \
 	&& cp script/results.html ${TNF_DIR}/script \
@@ -76,6 +77,8 @@ RUN \
 	&& cp \
 		cnf-certification-test/platform/operatingsystem/files/rhcos_version_map \
 		${TNF_DIR}/cnf-certification-test/platform/operatingsystem/files/rhcos_version_map
+
+COPY ./cnf-certification-test/tnf_config.yml ${TNF_DIR}/config/
 
 # Switch contexts back to the root TNF directory
 WORKDIR ${TNF_DIR}
