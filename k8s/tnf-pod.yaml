@@ -9,10 +9,12 @@ spec:
   containers:
   - name: cnf-cert-suite
     imagePullPolicy: Always
-    image: quay.io/greyerof/tests:cnfsuiteopv1
+    image: quay.io/greyerof/tests:cnfsuiteopv2
     command: ["./run-cnf-suites.sh"]
-    args: ["-l", "observability"]
+    args: ["-l", "lifecycle"]
     env:
       - name: TNF_LOG_LEVEL
         value: trace
+      - name: PFLT_DOCKERCONFIG
+        value: /usr/tnf/preflight.dummy
 

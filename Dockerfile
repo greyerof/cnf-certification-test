@@ -60,7 +60,8 @@ RUN make install-tools && make build-cnf-tests
 # hadolint ignore=SC2046
 RUN \
 	mkdir ${TNF_BIN_DIR} \
-	mkdir $(TNF_DIR)/config \
+	&& mkdir ${TNF_DIR}/config \
+	&& touch ${TNF_DIR}/preflight.dummy \
 	&& cp run-cnf-suites.sh ${TNF_DIR} \
 	&& mkdir ${TNF_DIR}/script \
 	&& cp script/results.html ${TNF_DIR}/script \
