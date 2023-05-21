@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cnf-cert-suite
+  namespace: cnf-certification-operator
+  labels:
+    app: cnf-cert-suite
+spec:
+  serviceAccountName: cnf-certification-operator-controller-manager
+  restartPolicy: Never
+  volumes:
+    - name: config-volume
+      configMap:
+        name: tnfconfig
+  containers:
+  - name: cnf-cert-suite
+    imagePullPolicy: Always
+    image: quay.io/greyerof/tests:cnfsuiteopv2
+    command: ["sh"]
+    args: ["-c", "./run-cnf-suites.sh observability && sleep 600"]
+    volumeMounts:
+      - name: config-volume
+        mountPath: /usr/tnf/myconfig
+    env:
+      - name: TNF_LOG_LEVEL
+        value: trace
+      - name: PFLT_DOCKERCONFIG
+        value: /usr/tnf/preflight.dummy
+
