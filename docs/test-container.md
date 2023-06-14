@@ -38,7 +38,7 @@ In order to get the required information, the test suite does not `ssh` into nod
 **Required arguments**
 
 * `-t` to provide the path of the local directory that contains tnf config files
-* `-o` to provide the path of the local directory where test results (claim.json) and execution logs (tnf-execution.log) will be available from after the container exits.
+* `-o` to provide the path of the local directory where test results (claim.json), the execution logs (tnf-execution.log), and the results artifacts file (results.tar.gz) will be available from after the container exits.
 
 !!! warning
 
@@ -95,6 +95,10 @@ In order to configure the test harness to use `docker`, issue the following prio
 ```shell
 export TNF_CONTAINER_CLIENT=docker
 ```
+
+### Avoid results artifacts file to be generated
+
+By default, a `results.tar.gz`file is created after the test suite has finished running all the tests cases. In order to avoid the generation of this file, the environment variable TNF_OMIT_ARTIFACTS_FILE should be set to `true`. See the `Test Output` section for more details about this file.
 
 ## With local test container image
 

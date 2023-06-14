@@ -156,4 +156,9 @@ type TestParameters struct {
 	OfflineDB              string `split_words:"true"`
 	AllowPreflightInsecure bool   `split_words:"true"`
 	PfltDockerconfig       string `split_words:"true" envconfig:"PFLT_DOCKERCONFIG"`
+	OmitArtifactsFile      bool   `split_words:"true" default:"false"`
+}
+
+func (params *TestParameters) OmitArtifactsFileCreation() bool {
+	return params.OmitArtifactsFile
 }

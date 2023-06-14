@@ -50,3 +50,17 @@ For more details on the contents of the claim file
 ## Execution logs
 
 The test suite also saves a copy of the execution logs at [test output directory]/tnf-execution.log
+
+## Results artifacts file
+
+The test suite generates a `results.tar.gz` file in the configured output folder which includes the following (zipped) files:
+* claim.json
+* claimjson.js
+* classification.js
+* cnf-certification-tests_junit.xml
+* results-embed.html
+* results.html
+
+This file serves two different purposes:
+1. Make it easier to store and send the test results for review.
+2. View the results in the html web page. In addition, the web page (either results-embed.thml or results.html) has a selector for workload type and allows the parter to introduce feedback for each of the failing test cases for later review from Red Hat. It's important to note that this web page needs the `claimjson.js` and `classification.js` files to be in the same folder as the html files to work properly.

@@ -17,6 +17,7 @@
 package suite
 
 import (
+	_ "embed"
 	"flag"
 	"os"
 	"path/filepath"
@@ -197,6 +198,29 @@ func TestTest(t *testing.T) {
 	payload := claimhelper.MarshalClaimOutput(claimRoot)
 	claimOutputFile := filepath.Join(*claimPath, claimFileName)
 	claimhelper.WriteClaimOutput(claimOutputFile, payload)
+
+	// HTML artifacts for the web results viewer/parser.
+	resultsOutputDir := *claimPath
+	filePaths, err := results.CreateResultsWebFiles(resultsOutputDir)
+	if err != nil {
+		log.Errorf("Failed to create results web files: %v", err)
+	}
+
+	// Compressed file creation with results and html artifacts.
+	if configuration.GetTestParameters().OmitArtifactsFileCreation() {
+		log.Warnf("Skipping the results & html files zip file generation.")
+		return
+	}
+
+	// Add claim file and junit xml files to the filePaths slice to be zipped.
+	filePaths = append(filePaths,
+		filepath.Join(*claimPath, results.ClaimFileName),
+		filepath.Join(*junitPath, results.JunitXMLFileName))
+
+	err = results.CompressResultsArtifacts(resultsOutputDir, filePaths)
+	if err != nil {
+		log.Errorf("Failed to compress results artifacts: %v", err)
+	}
 }
 
 // incorporateTNFVersion adds the TNF version to the claim.
