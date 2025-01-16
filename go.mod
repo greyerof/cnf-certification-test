@@ -12,7 +12,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require k8s.io/client-go v0.32.0
+require k8s.io/client-go v0.32.1
 
 require (
 	github.com/mittwald/go-helm-client v0.12.16
@@ -22,8 +22,8 @@ require (
 	github.com/operator-framework/operator-lifecycle-manager v0.30.0
 	github.com/pkg/errors v0.9.1 // indirect
 	helm.sh/helm/v3 v3.16.4
-	k8s.io/api v0.32.0
-	k8s.io/apimachinery v0.32.0
+	k8s.io/api v0.32.1
+	k8s.io/apimachinery v0.32.1
 	k8s.io/klog/v2 v2.130.1 // indirect
 )
 
@@ -208,8 +208,8 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	k8s.io/apiserver v0.32.0 // indirect
-	k8s.io/cli-runtime v0.32.0 // indirect
-	k8s.io/component-base v0.32.0 // indirect
+	k8s.io/cli-runtime v0.32.1 // indirect
+	k8s.io/component-base v0.32.1 // indirect
 	k8s.io/kube-aggregator v0.31.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20241105132330-32ad38e42d3f // indirect
 	modernc.org/libc v1.37.6 // indirect
@@ -247,7 +247,7 @@ require (
 	github.com/robert-nix/ansihtml v1.0.1
 	golang.org/x/term v0.28.0
 	google.golang.org/api v0.215.0
-	k8s.io/kubectl v0.32.0
+	k8s.io/kubectl v0.32.1
 	k8s.io/utils v0.0.0-20241104100929-3ea5e8cea738
 )
 
